@@ -97,7 +97,7 @@ function Main() {
   const [to, setTo] = useState("EUR");
 
   return (
-    <main className="flex flex-col items-center justify-center gap-8 my-24">
+    <main className="flex flex-col items-center justify-center gap-8 my-24 grow">
       <h2 className="text-4xl font-bold max-sm:max-w-sm text-center">Convert Currencies in Real-Time</h2>
 
       <section className="flex flex-col gap-4 bg-gray-800 px-8 py-6 rounded-lg max-w-sm sm:max-w-lg w-full">
