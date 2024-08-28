@@ -158,7 +158,7 @@ function Main() {
 
 function About() {
   return (
-    <aside className="flex flex-col gap-4 p-4 bg-gray-800 rounded-lg py-12">
+    <aside className="flex flex-col items-center gap-4 p-4 bg-gray-800 rounded-lg py-12">
       <h2 className="text-2xl font-bold text-center">Why Choose Us?</h2>
       
       <section className="flex max-md:flex-col max-md:items-center gap-6">
