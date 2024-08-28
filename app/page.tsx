@@ -1,113 +1,234 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+
+import Link from "next/link";
+
+import { ArrowRightLeft, Menu, Globe, Zap, Shield, Facebook, Twitter, Instagram } from "lucide-react";
+
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <>
+      <Header />
+      <Main />
+      <About />
+      <Notes />
+      <Footer />
+    </>
+  );
+}
+
+function Header() {
+  return (
+    <header className="flex justify-between items-center p-4 border-b border-gray-700">
+      <div className="flex items-center gap-2">
+        <ArrowRightLeft size={24} className="text-blue-500" />
+        <h1 className="text-2xl font-bold">Currency Converter</h1>
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* TODO: Add a dropdown menu for the currencies */}
+      <nav className="hidden sm:flex items-center gap-4">
+        <Link href="/" className="hover:text-blue-500">
+          Home
+        </Link>
+        <Link href="/" className="hover:text-blue-500">
+          Rates
+        </Link>
+        <Link href="/" className="hover:text-blue-500">
+          About
+        </Link>
+        <Link href="/" className="hover:text-blue-500">
+          Contact
+        </Link>
+      </nav>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <nav className="flex items-center gap-2 sm:hidden">
+        <Sheet>
+          <SheetTrigger>
+            <Menu size={24} />
+          </SheetTrigger>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+          <SheetContent className="bg-gray-900/70 backdrop-blur-md border-none flex flex-col gap-12">
+            <SheetHeader>
+              <SheetTitle className="text-white text-2xl">Currency Converter</SheetTitle>
+            </SheetHeader>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+            <div className="flex flex-col gap-6 items-center">
+              <Link href="/" className="hover:text-blue-500 text-lg">
+                Home
+              </Link>
+              <Link href="/" className="hover:text-blue-500 text-lg">
+                Rates
+              </Link>
+              <Link href="/" className="hover:text-blue-500 text-lg">
+                About
+              </Link>
+              <Link href="/" className="hover:text-blue-500 text-lg">
+                Contact
+              </Link>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </nav>
+    </header>
+  );
+}
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+function Main() {
+  const currencies = [
+    { name: "United States Dollar", symbol: "USD" },
+    { name: "Euro", symbol: "EUR" },
+    { name: "British Pound", symbol: "GBP" },
+    { name: "Japanese Yen", symbol: "JPY" },
+    { name: "Canadian Dollar", symbol: "CAD" },
+    { name: "Australian Dollar", symbol: "AUD" },
+    { name: "New Zealand Dollar", symbol: "NZD" },
+    { name: "Swiss Franc", symbol: "CHF" },
+    { name: "Hong Kong Dollar", symbol: "HKD" },
+    { name: "Singapore Dollar", symbol: "SGD" },
+  ];
+
+  const [from, setFrom] = useState("USD");
+  const [to, setTo] = useState("EUR");
+
+  return (
+    <main className="flex flex-col items-center justify-center gap-8 my-24">
+      <h2 className="text-4xl font-bold max-sm:max-w-sm text-center">Convert Currencies in Real-Time</h2>
+
+      <section className="flex flex-col gap-4 bg-gray-800 px-8 py-6 rounded-lg max-w-sm sm:max-w-lg w-full">
+        <article className="flex max-sm:flex-col gap-4">
+          <div className="flex flex-col w-full gap-1">
+            <h3>Amount</h3>
+            <Input placeholder="Enter amount" className="text-black" />
+          </div>
+
+          <div className="flex flex-col w-full gap-1">
+            <h3>From</h3>
+            <Select value={from} onValueChange={(value) => setFrom(value)}>
+              <SelectTrigger className="text-black">
+                <SelectValue placeholder="Select currency" />
+              </SelectTrigger>
+              <SelectContent>
+                {currencies.map((currency) => (
+                  <SelectItem key={currency.symbol} value={currency.symbol}>
+                    {currency.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </article>
+
+        <article className="flex max-sm:flex-col gap-11 sm:gap-4">
+          <div className="flex flex-col w-full gap-1">
+            <h3>To</h3>
+            <Select value={to} onValueChange={(value) => setTo(value)}>
+              <SelectTrigger className="text-black">
+                <SelectValue placeholder="Select currency" />
+              </SelectTrigger>
+              <SelectContent>
+                {currencies.map((currency) => (
+                  <SelectItem key={currency.symbol} value={currency.symbol}>
+                    {currency.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="flex items-end justify-center w-full">
+            <Button className="w-full bg-blue-500 hover:bg-blue-600">
+              Convert
+            </Button>
+          </div>
+        </article>
+
+        <article className="flex items-center justify-center text-xl font-bold">
+          <p>1 {from} = 2 {to}</p>
+        </article>
+      </section>
     </main>
+  );
+} 
+
+function About() {
+  return (
+    <aside className="flex flex-col gap-4 p-4 bg-gray-800 rounded-lg py-12">
+      <h2 className="text-2xl font-bold text-center">Why Choose Us?</h2>
+      
+      <section className="flex max-md:flex-col max-md:items-center gap-6">
+        <article className="flex flex-col gap-2 items-center justify-center text-center p-4 max-md:max-w-sm">
+          <Globe size={48} className="text-blue-500" />
+          <h3 className="text-xl font-bold">Global Coverage</h3>
+          <p className="text-md text-gray-400">Access exchange rates for 170+ currencies worldwide.</p>
+        </article>
+
+        <article className="flex flex-col gap-2 items-center justify-center text-center p-4 max-md:max-w-sm">
+          <Zap size={48} className="text-blue-500" />
+          <h3 className="text-xl font-bold">Real-Time Rates</h3>
+          <p className="text-md text-gray-400">Get up-to-the-minute exchange rates for accurate conversions.</p>
+        </article>
+
+        <article className="flex flex-col gap-2 items-center justify-center text-center p-4 max-md:max-w-sm">
+          <Shield size={48} className="text-blue-500" />
+          <h3 className="text-xl font-bold">Secure & Reliable</h3>
+          <p className="text-md text-gray-400">Trust in our secure platform for all your currency needs.</p>
+        </article>
+      </section>
+    </aside>
+  );
+}
+
+function Notes() {
+  return (
+    <aside className="flex max-md:flex-col gap-8 bg-gray-800 py-12 px-6">
+      <article className="flex flex-col gap-2 w-full">
+        <h3 className="text-lg font-bold">About Us</h3>
+        <p className="text-md text-gray-400 md:w-[80%] w-full">Currency Converter provides real-time currency conversion and exchange rate information for global travelers and businesses.</p>
+      </article>
+
+      <article className="flex flex-col gap-2 w-full">
+        <h3 className="text-lg font-bold">Quick Links</h3>
+
+        <div className="flex flex-col gap-2">
+          <Link href="/" className="text-md text-gray-400 hover:text-blue-500 w-min">Home</Link>
+          <Link href="/" className="text-md text-gray-400 hover:text-blue-500 w-min">Rates</Link>
+          <Link href="/" className="text-md text-gray-400 hover:text-blue-500 w-min">Converter</Link>
+          <Link href="/" className="text-md text-gray-400 hover:text-blue-500 w-min">API</Link>
+        </div>
+      </article>
+
+      <article className="flex flex-col gap-2 w-full">
+        <h3 className="text-lg font-bold">Contact</h3>
+        <div className="flex flex-col gap-2 text-md text-gray-400 md:w-[80%] w-full">
+          <p>Email: info@currencyconverter.com</p>
+          <p>Phone: +1 (555) 123-4567</p>
+          <p>Address: 123 Currency Street, Currency City, Currency Country</p>
+        </div>
+      </article>
+
+      <article className="flex flex-col gap-2 w-full">
+        <h3 className="text-lg font-bold">Follow Us</h3>
+        
+        <div className="flex gap-2">
+          <Link href="/" className="text-md text-gray-400"><Facebook size={24} /></Link>
+          <Link href="/" className="text-md text-gray-400"><Twitter size={24} /></Link>
+          <Link href="/" className="text-md text-gray-400"><Instagram size={24} /></Link>
+        </div>
+      </article>
+    </aside>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="flex items-center justify-center p-4 bg-gray-800 rounded-lg">
+      <p className="text-md text-gray-400">© 2024 Currency Converter. All rights reserved.</p>
+    </footer>
   );
 }
